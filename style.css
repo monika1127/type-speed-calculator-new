@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Public Sans", sans-serif;
+    font-size: 16px;
+    background-color: var(--neutral-light);
+    color: var(--primary);
+  }
+  :root {
+    --primary: hsl(268, 26%, 24%);
+    --primary-light: hsl(269, 18%, 57%);
+    --secondary: hsl(340, 67%, 57%);
+    --secondary-light: hsl(342, 40%, 87%);
+    --neutral-dark: hsl(233, 8%, 62%);
+    --neutral: hsl(232, 38%, 88%);
+    --neutral-light: hsl(220, 16%, 96%);
+    --white: hsl(0, 0%, 100%);
+    --fail: hsl(355, 46%, 45%);
+    --pass: hsl(137, 57%, 59%);
+  }
+
+.application {
+    max-width: 600px;
+    margin: auto
+}
+.application__title {
+    text-align: center;
+    color: var(--secondary);
+}
+
+.about__description {
+    color: var(--priary-light)
+}
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reset__button {
+    width: 100px;
+    padding: 8px;
+    text-align: center;
+    padding: 8px;
+    border: none;
+    background-color: var(--secondary-light);
+    border-radius: 4px;
+}
+
+.excercise,
+.excercise__record {
+    background-color: var(--white);
+    border-radius: 4px;
+    margin-top: 24px;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    margin-top: 24px;
+    padding: 8px;
+    text-align: center;
+}
+
+.excercise {
+    height: 112px;
+    overflow: hidden;
+}
+
+.excercise-word {
+    padding: 4px 8px;
+    line-height: 2;
+}
+.excercise-word--active{
+    background-color: var(--neutral);
+    border-radius: 4px;
+}
