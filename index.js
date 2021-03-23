@@ -6,6 +6,9 @@ const progressBar = document.querySelector('.progress__bar')
 
 let currentWordId
 let isCounter = false
+let counter
+
+const gameDuration = 60
 
 // function to shuffle words array
 const shuffle = (arr) => {
@@ -32,19 +35,18 @@ const setClassOnActiveWord = (className) => {
 //game timer
 
 const countdown = () =>{
-    const gameTime = 60
-    const endTime = Date.now() + gameTime*1000
-    const counter = setInterval(()=>{
-        const secondsLeft = Math.round((endTime - Date.now())/1000)
-        const progress = Math.round(100*secondsLeft/gameTime)
+    const endTime = Date.now() + gameDuration*1000
+    counter = setInterval(()=>{
+        const secondsLeft = (endTime - Date.now())/1000
+        const progress =  100-(100*secondsLeft/gameDuration)
         if(secondsLeft<0) {
             clearInterval(counter)
             return
         }
-        timer.innerHTML = secondsLeft + ' sec'
-        progressBar.style.width = progress + '%'
+        timer.innerHTML = Math.round(secondsLeft) + ' seconds left'
+        progressBar.style.width = progress +'%'
         console.log(progress)
-    }, 500)
+    }, 50)
 
 }
 
@@ -83,6 +85,10 @@ const loadNewGame = () => {
     currentWordId = 0
     setClassOnActiveWord('--active')
     input.value = ''
+    timer.innerHTML = gameDuration + ' seconds left'
+    progressBar.style.width = '0%'
+    clearInterval(counter)
+    isCounter = false
 }
 
 window.addEventListener('load', loadNewGame)
