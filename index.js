@@ -3,12 +3,15 @@ const input = document.querySelector('.excercise__record')
 const excercise = document.querySelector('.excercise')
 const timer = document.querySelector('.timer__counter')
 const progressBar = document.querySelector('.progress__bar')
+const results = document.querySelector('.resutls')
+
+const gameDuration = 60
 
 let currentWordId
 let isCounter = false
 let counter
-
-const gameDuration = 60
+let cpm
+let wpm
 
 // function to shuffle words array
 const shuffle = (arr) => {
@@ -33,7 +36,6 @@ const setClassOnActiveWord = (className) => {
     }
 }
 //game timer
-
 const countdown = () =>{
     const endTime = Date.now() + gameDuration*1000
     counter = setInterval(()=>{
@@ -41,13 +43,12 @@ const countdown = () =>{
         const progress =  100-(100*secondsLeft/gameDuration)
         if(secondsLeft<0) {
             clearInterval(counter)
+            loadResults()
             return
         }
         timer.innerHTML = Math.round(secondsLeft) + ' seconds left'
         progressBar.style.width = progress +'%'
-        console.log(progress)
     }, 50)
-
 }
 
 // function to chack spelling
@@ -59,9 +60,14 @@ const spellingCheck = (e) => {
     // whole word validation (if space-32 or enter-13 pressed  )
     if ((e.keyCode === 32 ||e.keyCode ===  13) && input.value.trim().length > 0) {
         excerciseWord.innerHTML = words[currentWordId]
-        excerciseWord.innerHTML === input.value.trim()
-            ? setClassOnActiveWord('--pass')
-            : setClassOnActiveWord('--fail')
+
+        if(excerciseWord.innerHTML === input.value.trim()) {
+            setClassOnActiveWord('--pass')
+            cpm = cpm + excerciseWord.innerHTML.length
+            wpm++
+        } else {
+            setClassOnActiveWord('--fail')
+        }
         currentWordId++
         setClassOnActiveWord('--active')
         input.value = ''
@@ -80,15 +86,24 @@ const spellingCheck = (e) => {
     }
 }
 
+const loadResults = () => {
+    results.style.transform=`scaleY(1)`
+}
+
 const loadNewGame = () => {
+    //1. new example display
     loadExcercise()
     currentWordId = 0
     setClassOnActiveWord('--active')
     input.value = ''
+    //2. game counter reset
     timer.innerHTML = gameDuration + ' seconds left'
     progressBar.style.width = '0%'
     clearInterval(counter)
     isCounter = false
+    //3. reset score from previous game
+    cpm = 0
+    wpm = 0
 }
 
 window.addEventListener('load', loadNewGame)

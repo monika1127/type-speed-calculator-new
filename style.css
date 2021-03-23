@@ -46,8 +46,11 @@
     border: none;
     background-color: var(--secondary-light);
     border-radius: 4px;
+    cursor: pointer
 }
-
+.reset__button:hover {
+    border: 1px solid var(--secondary)
+}
 
 .timer__bar {
     width: 200px;
@@ -72,18 +75,14 @@
     height: 100%;
     background-color: var(--secondary-light);
     position: absolute;
-    transition: all 0.5s;
     top: 0;
     left: 0
 }
 
-.game__container {
-    position: relative;
-    margin-top: 24px;
-}
 .excercise,
 .excercise__record,
 .resutls {
+    margin-top: 24px;
     background-color: var(--white);
     border-radius: 4px;
     padding: 8px;
@@ -96,9 +95,14 @@
 .excercise {
     height: 112px;
     overflow: hidden;
-    margin-bottom: 24px;
 }
-
+.excercise__record {
+    background-color: var(--secondary-light);
+}
+.excercise__record:focus {
+    outline: none !important;
+    background-color: var(--white);
+}
 .excercise-word {
     padding: 4px 8px;
     line-height: 2;
@@ -124,5 +128,6 @@
     position: absolute;
     height: 167px;
     top: 0;
-    display: none
+    scale: 0;
+    transition: all ease-in-out
 }
