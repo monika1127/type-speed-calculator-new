@@ -5,7 +5,7 @@ const timer = document.querySelector('.timer__counter')
 const progressBar = document.querySelector('.progress__bar')
 const results = document.querySelector('.resutls')
 
-const gameDuration = 60
+const gameDuration = 15
 
 let currentWordId
 let isCounter = false
@@ -30,6 +30,11 @@ const setClassOnActiveWord = (className) => {
     const activeWord = excercise.querySelector(`#word_${currentWordId}`)
     if (className === '--active') {
         activeWord.classList.add(`${className}`)
+        activeWord.offsetTop > 100 &&
+            activeWord.scrollIntoView({
+                block: 'center',
+                inline: 'center',
+                behavior: 'smooth',})
     } else {
         activeWord.classList.remove(`--active`)
         activeWord.classList.add(`${className}`)
@@ -87,7 +92,11 @@ const spellingCheck = (e) => {
 }
 
 const loadResults = () => {
-    results.style.transform=`scaleY(1)`
+    results.classList.add(`--visible`)
+    const cpmValue = results.querySelector('#cpm')
+    const wpmValue = results.querySelector('#wpm')
+    cpmValue.innerHTML = cpm
+    wpmValue.innerHTML = wpm
 }
 
 const loadNewGame = () => {
@@ -102,6 +111,7 @@ const loadNewGame = () => {
     clearInterval(counter)
     isCounter = false
     //3. reset score from previous game
+    results.classList.remove(`--visible`)
     cpm = 0
     wpm = 0
 }
