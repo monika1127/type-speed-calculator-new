@@ -1,8 +1,11 @@
 const resetButton = document.querySelector('.reset__button')
 const input = document.querySelector('.excercise__record')
 const excercise = document.querySelector('.excercise')
+const timer = document.querySelector('.timer__counter')
+const progressBar = document.querySelector('.progress__bar')
 
 let currentWordId
+let isCounter = false
 
 // function to shuffle words array
 const shuffle = (arr) => {
@@ -26,9 +29,30 @@ const setClassOnActiveWord = (className) => {
         activeWord.classList.add(`${className}`)
     }
 }
+//game timer
+
+const countdown = () =>{
+    const gameTime = 60
+    const endTime = Date.now() + gameTime*1000
+    const counter = setInterval(()=>{
+        const secondsLeft = Math.round((endTime - Date.now())/1000)
+        const progress = Math.round(100*secondsLeft/gameTime)
+        if(secondsLeft<0) {
+            clearInterval(counter)
+            return
+        }
+        timer.innerHTML = secondsLeft + ' sec'
+        progressBar.style.width = progress + '%'
+        console.log(progress)
+    }, 500)
+
+}
 
 // function to chack spelling
 const spellingCheck = (e) => {
+    !isCounter && countdown()
+    isCounter = true
+
     const excerciseWord = excercise.querySelector(`#word_${currentWordId}`)
     // whole word validation (if space-32 or enter-13 pressed  )
     if ((e.keyCode === 32 ||e.keyCode ===  13) && input.value.trim().length > 0) {

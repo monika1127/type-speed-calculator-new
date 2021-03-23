@@ -48,15 +48,33 @@
     border-radius: 4px;
 }
 
+
+.bar {
+    width: 200px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: var(--white);
+
+}
+
+.progress__bar {
+    border-radius: 8px;
+    height: 100%;
+    background-color: var(--secondary-light);
+}
+
+.game__container {
+    position: relative;
+    margin-top: 24px;
+}
 .excercise,
-.excercise__record {
+.excercise__record,
+.resutls {
     background-color: var(--white);
     border-radius: 4px;
-    margin-top: 24px;
     padding: 8px;
     width: 100%;
     border: none;
-    margin-top: 24px;
     padding: 8px;
     text-align: center;
 }
@@ -64,6 +82,7 @@
 .excercise {
     height: 112px;
     overflow: hidden;
+    margin-bottom: 24px;
 }
 
 .excercise-word {
@@ -85,4 +104,11 @@
 }
 .--incorrect{
     color: var(--fail);
+}
+
+.resutls{
+    position: absolute;
+    height: 167px;
+    top: 0;
+    display: none
 }
