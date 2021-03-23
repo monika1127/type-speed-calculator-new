@@ -16,7 +16,7 @@
     --neutral: hsl(232, 38%, 88%);
     --neutral-light: hsl(220, 16%, 96%);
     --white: hsl(0, 0%, 100%);
-    --fail: hsl(355, 46%, 45%);
+    --fail: hsl(355, 47%, 52%);
     --pass: hsl(137, 57%, 59%);
   }
 
@@ -70,7 +70,19 @@
     padding: 4px 8px;
     line-height: 2;
 }
-.excercise-word--active{
+.--active{
     background-color: var(--neutral);
     border-radius: 4px;
+}
+.--pass{
+    color: var(--pass);
+}
+.--fail{
+    color: var(--fail);
+}
+.--correct{
+    color: var(--white);
+}
+.--incorrect{
+    color: var(--fail);
 }
