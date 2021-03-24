@@ -5,7 +5,7 @@ const timer = document.querySelector('.timer__counter')
 const progressBar = document.querySelector('.progress__bar')
 const results = document.querySelector('.resutls')
 
-const gameDuration = 15
+const gameDuration = 60
 
 let currentWordId
 let isCounter = false
@@ -56,7 +56,7 @@ const countdown = () =>{
     }, 50)
 }
 
-// function to chack spelling
+// function to check spelling
 const spellingCheck = (e) => {
     !isCounter && countdown()
     isCounter = true
